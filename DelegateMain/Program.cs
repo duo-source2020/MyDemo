@@ -30,7 +30,7 @@ namespace DelegateMain
 
 		public static int Union(int a, int b)
 		{
-			return a * 10 + b;
+			return int.Parse(a.ToString() + b.ToString());
 		}
 
 	}
