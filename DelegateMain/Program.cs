@@ -1,10 +1,19 @@
 ﻿using System;
+using System.Diagnostics.SymbolStore;
 
 namespace DelegateMain
 {	
 	class Program
 	{
-		public delegate int TwoIntegerOperation(int par1, int par2);
+		public class Operation
+		{
+			public delegate int TwoIntegerOperation(int par1, int par2);
+
+			public static int Run(int b1, int b2, TwoIntegerOperation mathOperation)
+			{
+				return mathOperation(b2, b2);
+			}
+		}
 
 		static void Main(string[] args)
 		{
@@ -13,17 +22,10 @@ namespace DelegateMain
 			var firstInt = int.Parse(Console.ReadLine());
 			var secondInt = int.Parse(Console.ReadLine());
 
-			//original 
-			var addOperation = new TwoIntegerOperation(Add);
-			Console.WriteLine("Add result: {0}", addOperation(firstInt, secondInt));
-
-			//C# 2.0 inline function
-			TwoIntegerOperation multiplyOperation = delegate (int a, int b) { return a * b; };
-			Console.WriteLine("Multiply result: {0}", multiplyOperation(firstInt, secondInt));
-
-			//C# 3.0 lambda
-			TwoIntegerOperation unionOperation = (a, b) => (a * 10 + b);
-			Console.WriteLine("Union result: {0}", unionOperation(firstInt, secondInt));
+			
+			Console.WriteLine("Add result: {0}", Operation.Run(firstInt, secondInt, Add));
+			Console.WriteLine("Multiply result: {0}", Operation.Run(firstInt, secondInt, Multiply));
+			Console.WriteLine("Union result: {0}", Operation.Run(firstInt, secondInt, Union));
 
 			Console.ReadLine();
 		}
