@@ -12,6 +12,8 @@ namespace DelegateMain
 			var secondInt = int.Parse(Console.ReadLine());
 
 			Console.WriteLine("Add result: {0}", Add(firstInt, secondInt));
+			Console.WriteLine("Multiply result: {0}", Multiply(firstInt, secondInt));
+			Console.WriteLine("Union result: {0}", Union(firstInt, secondInt));
 
 			Console.ReadLine();
 		}
@@ -20,6 +22,17 @@ namespace DelegateMain
 		{
 			return a + b;
 		}
+
+		public static int Multiply(int a1, int a2)
+		{
+			return a1 * a2;
+		}
+
+		public static int Union(int a, int b)
+		{
+			return a * 10 + b;
+		}
+
 	}
 
 }
